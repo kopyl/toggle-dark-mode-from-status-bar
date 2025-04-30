@@ -8,3 +8,5 @@ Video demo:
 
 Keywords (for anyone looking for this):
 _menu menubar light mode menubar statusbar swift macOS native_
+
+Did you find this tool useful? As of April 29 2025, the day I'm writing this README, I'm desparately looking for a job as an Apple Developer. Please feel free to recommend me to anyone who might be interested ❤️
