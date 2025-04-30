@@ -52,6 +52,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         button.image?.isTemplate = true
         
         let menu = NSMenu()
+        menu.addItem(NSMenuItem(title: "Move app in foreground", action: #selector(moveAppOutOfBackground), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApp.terminate(_:)), keyEquivalent: "q"))
         menu.delegate = self
         
@@ -72,6 +74,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         } else if event.type == .leftMouseUp {
             
             runScript()
+        }
+    }
+    
+    @objc func moveAppOutOfBackground() {
+        NSApp.setActivationPolicy(.regular)
+        
+        let appID = Bundle.main.bundleIdentifier ?? ""
+        if let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: appID) {
+            NSWorkspace.shared.open(appURL)
         }
     }
 }
