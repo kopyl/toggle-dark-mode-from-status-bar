@@ -1,6 +1,6 @@
 This is a simple native macOS (10.14-15.4.1) status bar app which toggles dark mode on-off:
 
-[Download the latest release](https://github.com/kopyl/toggle-dark-mode-from-status-bar/releases/download/1.0/Toggle.Dark.Mode.from.Menu.Bar.app.zip) and enjoy.
+[Download the latest release](https://github.com/kopyl/toggle-dark-mode-from-status-bar/releases/download/1.1/Appearancer.app.zip) and enjoy.
 
 Video demo:
 
