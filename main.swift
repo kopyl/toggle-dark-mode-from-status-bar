@@ -18,14 +18,31 @@ func runScript() {
     script.executeAndReturnError(&error)
 }
 
-func createMaiWindow() {
-    mainWindow = NSWindow(
-        contentRect: NSRect(x: 0, y: 0, width: mainWindowWidth, height: mainWindowHeight),
-        styleMask: [.titled],
-        backing: .buffered, defer: false)
+
+class Window: NSWindow {
+    init(view: some NSViewController, styleMask: NSWindow.StyleMask = [.closable, .titled]) {
+        super.init(
+            contentRect: .zero,
+            styleMask: styleMask,
+            backing: .buffered,
+            defer: false
+        )
+        self.titlebarAppearsTransparent = true
+        self.contentViewController = view
+        self.titlebarAppearsTransparent = true
+        
+        let _ = NSWindowController(window: self)
+    }
     
-    mainWindow?.contentViewController = GreetingViewController()
+    override var canBecomeKey: Bool {
+        return true
+    }
+}
+
+func createMaiWindow() {
+    mainWindow = Window(view: GreetingViewController())
     mainWindow?.setContentSize(NSSize(width: mainWindowWidth, height: mainWindowHeight))
+    mainWindow?.backgroundColor = .appBg
     let _ = NSWindowController(window: mainWindow)
 }
 
@@ -84,6 +101,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         if let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: appID) {
             NSWorkspace.shared.open(appURL)
         }
+    }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
     }
 }
 

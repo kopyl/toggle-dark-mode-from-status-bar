@@ -1,12 +1,12 @@
 import Cocoa
 
-let mainWindowWidth: CGFloat = 500
-let mainWindowHeight: CGFloat = 500
+let mainWindowWidth: CGFloat = 528
+let mainWindowHeight: CGFloat = 720
 
 final class GreetingView: NSView {
     
     private let appIconSize: CGFloat = 96
-    private let verticalSpacing: CGFloat = 18
+    private let verticalSpacing: CGFloat = 30
     private let topPadding: CGFloat = 48
     private let bottomPadding: CGFloat = 26
     private let horizontalPadding: CGFloat = 26
@@ -40,13 +40,21 @@ final class GreetingView: NSView {
         imageView.widthAnchor.constraint(equalToConstant: appIconSize).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: appIconSize).isActive = true
         
-        let titleLabel = NSTextField(labelWithString: "Toggle Dark Mode from Menu Bar")
-        titleLabel.font = NSFont.systemFont(ofSize: 20)
-        titleLabel.textColor = NSColor.labelColor
+        let titleLabel = NSTextField(labelWithString: "Welcome to Appearancer")
+        titleLabel.font = NSFont.systemFont(ofSize: 34, weight: .regular)
+        titleLabel.textColor = NSColor.primaryText
         titleLabel.alignment = .center
+        
+        let subtitleLabel = NSTextField(labelWithString: "Toggle Dark mode from Menu Bar")
+        subtitleLabel.font = NSFont.systemFont(ofSize: 14, weight: .regular)
+        subtitleLabel.textColor = NSColor.secondaryText
+        subtitleLabel.alignment = .center
         
         innerStack.addArrangedSubview(imageView)
         innerStack.addArrangedSubview(titleLabel)
+        innerStack.addArrangedSubview(subtitleLabel)
+        
+        innerStack.setCustomSpacing(verticalSpacing + 10, after: titleLabel)
         
         let spacer = NSView()
         spacer.translatesAutoresizingMaskIntoConstraints = false
@@ -66,10 +74,10 @@ final class GreetingView: NSView {
         
         hideButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            hideButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26),
-            hideButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26),
-            hideButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -26),
-            hideButton.heightAnchor.constraint(equalToConstant: 49)
+            hideButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
+            hideButton.heightAnchor.constraint(equalToConstant: 49),
+            hideButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            hideButton.widthAnchor.constraint(equalToConstant: 272)
         ])
         
         let topPaddingView = NSView()
@@ -94,6 +102,10 @@ final class GreetingView: NSView {
             mainStack.topAnchor.constraint(equalTo: topAnchor),
             mainStack.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    override func viewDidChangeEffectiveAppearance() {
+        layer?.backgroundColor = NSColor.appBg.cgColorAppearanceFix
     }
     
     @objc private func hideApp() {

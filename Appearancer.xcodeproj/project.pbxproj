@@ -13,7 +13,7 @@
 
 /* Begin PBXFileReference section */
 		483E49D42DC24FA30095A090 /* Toggle-Dark-Mode-from-Menu-Bar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Toggle-Dark-Mode-from-Menu-Bar-Info.plist"; sourceTree = "<group>"; };
-		48D82E582DC19471003E9BDD /* Toggle Dark Mode from Menu Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Toggle Dark Mode from Menu Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48D82E582DC19471003E9BDD /* Appearancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appearancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D82E672DC1947A003E9BDD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		48D82E682DC1947A003E9BDD /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +51,7 @@
 		48D82E592DC19471003E9BDD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48D82E582DC19471003E9BDD /* Toggle Dark Mode from Menu Bar.app */,
+				48D82E582DC19471003E9BDD /* Appearancer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,9 +59,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		48D82E572DC19471003E9BDD /* Toggle Dark Mode from Menu Bar */ = {
+		48D82E572DC19471003E9BDD /* Appearancer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48D82E642DC19473003E9BDD /* Build configuration list for PBXNativeTarget "Toggle Dark Mode from Menu Bar" */;
+			buildConfigurationList = 48D82E642DC19473003E9BDD /* Build configuration list for PBXNativeTarget "Appearancer" */;
 			buildPhases = (
 				48D82E542DC19471003E9BDD /* Sources */,
 				48D82E552DC19471003E9BDD /* Frameworks */,
@@ -74,11 +74,11 @@
 			fileSystemSynchronizedGroups = (
 				48D82E5A2DC19471003E9BDD /* toggle-dark-mode-from-status-bar */,
 			);
-			name = "Toggle Dark Mode from Menu Bar";
+			name = Appearancer;
 			packageProductDependencies = (
 			);
 			productName = "toggle-dark-mode-from-status-bar";
-			productReference = 48D82E582DC19471003E9BDD /* Toggle Dark Mode from Menu Bar.app */;
+			productReference = 48D82E582DC19471003E9BDD /* Appearancer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +96,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 48D82E532DC19471003E9BDD /* Build configuration list for PBXProject "Toggle Dark Mode from Menu Bar" */;
+			buildConfigurationList = 48D82E532DC19471003E9BDD /* Build configuration list for PBXProject "Appearancer" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -110,7 +110,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48D82E572DC19471003E9BDD /* Toggle Dark Mode from Menu Bar */,
+				48D82E572DC19471003E9BDD /* Appearancer */,
 			);
 		};
 /* End PBXProject section */
@@ -325,7 +325,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		48D82E532DC19471003E9BDD /* Build configuration list for PBXProject "Toggle Dark Mode from Menu Bar" */ = {
+		48D82E532DC19471003E9BDD /* Build configuration list for PBXProject "Appearancer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48D82E622DC19473003E9BDD /* Debug */,
@@ -334,7 +334,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48D82E642DC19473003E9BDD /* Build configuration list for PBXNativeTarget "Toggle Dark Mode from Menu Bar" */ = {
+		48D82E642DC19473003E9BDD /* Build configuration list for PBXNativeTarget "Appearancer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48D82E652DC19473003E9BDD /* Debug */,

@@ -14,39 +14,43 @@ final class StyledButton: NSButton {
         self.actionHandler = action
         self.isBordered = false
         self.wantsLayer = true
-        self.layer?.cornerRadius = 7
+        self.layer?.cornerRadius = 5
         self.title = ""
         
+        let font = NSFont.systemFont(ofSize: 14)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .kern: 0.3,
+            .font: font
+        ]
         let titleLabel = NSTextField(labelWithString: title)
-        titleLabel.font = .systemFont(ofSize: 14)
+        titleLabel.font = font
         titleLabel.textColor = NSColor(named: "primaryText") ?? .labelColor
         titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         titleLabel.alignment = .center
+        titleLabel.attributedStringValue = NSAttributedString(string: title, attributes: attributes)
         
         var stack: NSStackView
 
         if #available(macOS 11.0, *) {
             let iconImage = NSImage(systemSymbolName: icon, accessibilityDescription: nil)
             let iconView = NSImageView(image: iconImage ?? NSImage())
-            iconView.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: 12, weight: .medium)
+            iconView.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: 13, weight: .medium)
             iconView.translatesAutoresizingMaskIntoConstraints = false
             iconView.contentTintColor = NSColor(named: "primaryText") ?? .labelColor
             iconView.wantsLayer = true
-            iconView.layer?.cornerRadius = 4
-            NSLayoutConstraint.activate([
-                iconView.widthAnchor.constraint(equalToConstant: 33),
-                iconView.heightAnchor.constraint(equalToConstant: 25)
-            ])
+            iconView.widthAnchor.constraint(equalToConstant: 33).isActive = true
             stack = NSStackView(views: [titleLabel, NSView(), iconView])
+            iconView.centerYAnchor.constraint(equalTo: stack.centerYAnchor).isActive = true
         } else {
             stack = NSStackView(views: [titleLabel])
         }
-        
-        stack.alignment = .centerX
 
         stack.orientation = .horizontal
         stack.spacing = 0
-        stack.edgeInsets = NSEdgeInsets(top: 0, left: 21, bottom: 0, right: 13)
+        
+        if #available(macOS 11.0, *) {
+            stack.edgeInsets = NSEdgeInsets(top: 0, left: 18, bottom: 0, right: 11)
+        }
 
         self.addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +71,7 @@ final class StyledButton: NSButton {
             ])
         }
         
-        self.layer?.backgroundColor = NSColor.buttonBg.cgColor
+        self.layer?.backgroundColor = NSColor.buttonBg.cgColorAppearanceFix
         
         self.addTrackingArea(NSTrackingArea(rect: .zero,
                                             options: [.mouseEnteredAndExited, .activeInKeyWindow, .inVisibleRect],
@@ -80,31 +84,13 @@ final class StyledButton: NSButton {
     }
     
     override func mouseDown(with event: NSEvent) {
-        if #available(macOS 11.0, *) {
-            app.effectiveAppearance.performAsCurrentDrawingAppearance {
-                self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColor
-            }
-        }
-        else {
-            self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColor
-        }
+        self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColorAppearanceFix
         super.mouseDown(with: event)
-        if #available(macOS 11.0, *) {
-            app.effectiveAppearance.performAsCurrentDrawingAppearance {
-                self.layer?.backgroundColor = NSColor.buttonBg.cgColor
-            }
-        }
+        self.layer?.backgroundColor = NSColor.buttonBg.cgColorAppearanceFix
     }
     
     override func viewDidChangeEffectiveAppearance() {
-        if #available(macOS 11.0, *) {
-            app.effectiveAppearance.performAsCurrentDrawingAppearance {
-                self.layer?.backgroundColor = NSColor.buttonBg.cgColor
-            }
-        }
-        else {
-            self.layer?.backgroundColor = NSColor.buttonBg.cgColor
-        }
+        self.layer?.backgroundColor = NSColor.buttonBg.cgColorAppearanceFix
     }
 
     private var actionHandler: (() -> Void)?
