@@ -1,75 +1,103 @@
-import SwiftUI
+import Cocoa
 
-struct CustomButtonStyle: ButtonStyle {
-    enum StyleType {
-        case primary, secondary
+final class StyledButton: NSButton {
+
+    enum Style {
+        case primary
+    }
+
+    init(style: Style, title: String, icon: String, action: @escaping () -> Void) {
+        super.init(frame: .zero)
+        
+        self.target = self
+        self.action = #selector(buttonPressed)
+        self.actionHandler = action
+        self.isBordered = false
+        self.wantsLayer = true
+        self.layer?.cornerRadius = 7
+        self.title = ""
+        
+        let titleLabel = NSTextField(labelWithString: title)
+        titleLabel.font = .systemFont(ofSize: 14)
+        titleLabel.textColor = NSColor(named: "primaryText") ?? .labelColor
+        titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        titleLabel.alignment = .center
+        
+        var stack: NSStackView
+
+        if #available(macOS 11.0, *) {
+            let iconImage = NSImage(systemSymbolName: icon, accessibilityDescription: nil)
+            let iconView = NSImageView(image: iconImage ?? NSImage())
+            iconView.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: 12, weight: .medium)
+            iconView.translatesAutoresizingMaskIntoConstraints = false
+            iconView.contentTintColor = NSColor(named: "primaryText") ?? .labelColor
+            iconView.wantsLayer = true
+            iconView.layer?.cornerRadius = 4
+            NSLayoutConstraint.activate([
+                iconView.widthAnchor.constraint(equalToConstant: 33),
+                iconView.heightAnchor.constraint(equalToConstant: 25)
+            ])
+            stack = NSStackView(views: [titleLabel, NSView(), iconView])
+        } else {
+            stack = NSStackView(views: [titleLabel])
+        }
+        
+        stack.alignment = .centerX
+
+        stack.orientation = .horizontal
+        stack.spacing = 0
+        stack.edgeInsets = NSEdgeInsets(top: 0, left: 21, bottom: 0, right: 13)
+
+        self.addSubview(stack)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: self.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+        
+        if #available(macOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                stack.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                stack.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            ])
+        }
+        else {
+            NSLayoutConstraint.activate([
+                stack.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            ])
+        }
+        
+        self.layer?.backgroundColor = NSColor.buttonBg.cgColor
+        
+        print(NSColor.buttonBg.cgColor)
+        
+        self.addTrackingArea(NSTrackingArea(rect: .zero,
+                                            options: [.mouseEnteredAndExited, .activeInKeyWindow, .inVisibleRect],
+                                            owner: self,
+                                            userInfo: nil))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    let type: StyleType
-    let foregroundColor: Color
-    let backgroundColor: Color
-    let pressedColor: Color
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .font(.system(size: 14, weight: .regular))
-            .padding(12)
-            .padding(.leading, 10)
-            .foregroundColor(foregroundColor)
-            .background(configuration.isPressed ? pressedColor : backgroundColor)
-            .cornerRadius(7)
+    override func mouseDown(with event: NSEvent) {
+        self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColor
+        super.mouseDown(with: event)
+        self.layer?.backgroundColor = NSColor(named: "buttonBg")?.cgColor ?? NSColor.controlBackgroundColor.cgColor
     }
-
-    static var primary: CustomButtonStyle {
-        CustomButtonStyle(
-            type: .primary,
-            foregroundColor: .primaryText,
-            backgroundColor: .buttonBg,
-            pressedColor: .black.opacity(0.05)
-        )
-    }
-}
-
-struct ButtonIcon: View {
-    let icon: String
-    let style: CustomButtonStyle
-
-    var body: some View {
-        Image(systemName: icon)
-            .font(.system(size: 12, weight: .medium ))
-            .foregroundColor(style.foregroundColor)
-            .frame(width: 33, height: 25)
-            .cornerRadius(4)
-    }
-}
-
-struct StyledButton: View {
-    var style: CustomButtonStyle
-    var title: String
-    var icon: String
-    var action: () -> Void
-
-    init(
-        _ style: CustomButtonStyle,
-        _ title: String,
-        icon: String,
-        action: @escaping () -> Void
-    ) {
-        self.style = style
-        self.title = title
-        self.icon = icon
-        self.action = action
-    }
-
-    var body: some View {
-        Button(action: action) {
-            HStack {
-                Text(title)
-                Spacer()
-                ButtonIcon(icon: icon, style: style)
+    
+    override func viewDidChangeEffectiveAppearance() {
+        if #available(macOS 11.0, *) {
+            app.effectiveAppearance.performAsCurrentDrawingAppearance {
+                self.layer?.backgroundColor = NSColor.buttonBg.cgColor
             }
         }
-        .buttonStyle(style)
+    }
+
+    private var actionHandler: (() -> Void)?
+
+    @objc private func buttonPressed() {
+        actionHandler?()
     }
 }

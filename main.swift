@@ -24,7 +24,7 @@ func createMaiWindow() {
         styleMask: [.titled],
         backing: .buffered, defer: false)
     
-    mainWindow?.contentViewController = NSHostingController(rootView: Greetingview())
+    mainWindow?.contentViewController = GreetingViewController()
     mainWindow?.setContentSize(NSSize(width: mainWindowWidth, height: mainWindowHeight))
     let _ = NSWindowController(window: mainWindow)
 }
