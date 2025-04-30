@@ -6,6 +6,11 @@ Video demo:
 
 ![Video demo](https://github.com/user-attachments/assets/e3423656-a53d-4cf1-a012-34548629eb8c)
 
+Unfortunately i was not able to submit this to AppStore, so I'm giving thisout for free.
+
+### Supported macOS:
+10.14-15.4.1
+
 Keywords (for anyone looking for this):
 _menu menubar light mode menubar statusbar swift macOS native_
 
