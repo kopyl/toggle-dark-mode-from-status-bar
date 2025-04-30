@@ -1,5 +1,5 @@
-import Cocoa
 import OSAKit
+import SwiftUI
 
 let script = """
 tell application "System Events"
@@ -18,12 +18,30 @@ func runScript() {
     script.executeAndReturnError(&error)
 }
 
+func createMaiWindow() {
+    mainWindow = NSWindow(
+        contentRect: NSRect(x: 0, y: 0, width: mainWindowWidth, height: mainWindowHeight),
+        styleMask: [.titled],
+        backing: .buffered, defer: false)
+    
+    mainWindow?.contentViewController = NSHostingController(rootView: Greetingview())
+    mainWindow?.setContentSize(NSSize(width: mainWindowWidth, height: mainWindowHeight))
+    let _ = NSWindowController(window: mainWindow)
+}
+
+func showMainWindow() {
+    mainWindow?.makeKeyAndOrderFront(nil)
+    mainWindow?.center()
+}
+
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     private var statusBarMenu: NSMenu?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         addStatusBarItem()
+        createMaiWindow()
+        showMainWindow()
     }
     
     private func addStatusBarItem() {
@@ -58,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 }
 
-let app = NSApplication.shared
+let app = Application.shared
 let delegate = AppDelegate()
 app.delegate = delegate
 
