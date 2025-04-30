@@ -82,9 +82,20 @@ final class StyledButton: NSButton {
     }
     
     override func mouseDown(with event: NSEvent) {
-        self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColor
+        if #available(macOS 11.0, *) {
+            app.effectiveAppearance.performAsCurrentDrawingAppearance {
+                self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColor
+            }
+        }
+        else {
+            self.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.05).cgColor
+        }
         super.mouseDown(with: event)
-        self.layer?.backgroundColor = NSColor(named: "buttonBg")?.cgColor ?? NSColor.controlBackgroundColor.cgColor
+        if #available(macOS 11.0, *) {
+            app.effectiveAppearance.performAsCurrentDrawingAppearance {
+                self.layer?.backgroundColor = NSColor.buttonBg.cgColor
+            }
+        }
     }
     
     override func viewDidChangeEffectiveAppearance() {
@@ -92,6 +103,9 @@ final class StyledButton: NSButton {
             app.effectiveAppearance.performAsCurrentDrawingAppearance {
                 self.layer?.backgroundColor = NSColor.buttonBg.cgColor
             }
+        }
+        else {
+            self.layer?.backgroundColor = NSColor.buttonBg.cgColor
         }
     }
 
