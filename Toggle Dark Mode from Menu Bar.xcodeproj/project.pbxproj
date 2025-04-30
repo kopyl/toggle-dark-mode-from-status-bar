@@ -12,6 +12,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		483E49D42DC24FA30095A090 /* Toggle-Dark-Mode-from-Menu-Bar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Toggle-Dark-Mode-from-Menu-Bar-Info.plist"; sourceTree = "<group>"; };
 		48D82E582DC19471003E9BDD /* Toggle Dark Mode from Menu Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Toggle Dark Mode from Menu Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D82E672DC1947A003E9BDD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		48D82E682DC1947A003E9BDD /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
@@ -39,6 +40,7 @@
 		48D82E4F2DC19471003E9BDD = {
 			isa = PBXGroup;
 			children = (
+				483E49D42DC24FA30095A090 /* Toggle-Dark-Mode-from-Menu-Bar-Info.plist */,
 				48D82E672DC1947A003E9BDD /* main.swift */,
 				48D82E682DC1947A003E9BDD /* app.swift */,
 				48D82E5A2DC19471003E9BDD /* toggle-dark-mode-from-status-bar */,
@@ -269,9 +271,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Toggle-Dark-Mode-from-Menu-Bar-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Toggle Dark Mode from Menu Bar";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use AppleScript to toggle the appearance";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,9 +302,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Toggle-Dark-Mode-from-Menu-Bar-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Toggle Dark Mode from Menu Bar";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use AppleScript to toggle the appearance";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
