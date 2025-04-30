@@ -7,4 +7,4 @@ Video demo:
 ![Video demo](https://github.com/user-attachments/assets/e3423656-a53d-4cf1-a012-34548629eb8c)
 
 Keywords (for anyone looking for this):
-menu menubar light mode menubar statusbar swift macOS native
+_menu menubar light mode menubar statusbar swift macOS native_
