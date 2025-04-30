@@ -69,8 +69,6 @@ final class StyledButton: NSButton {
         
         self.layer?.backgroundColor = NSColor.buttonBg.cgColor
         
-        print(NSColor.buttonBg.cgColor)
-        
         self.addTrackingArea(NSTrackingArea(rect: .zero,
                                             options: [.mouseEnteredAndExited, .activeInKeyWindow, .inVisibleRect],
                                             owner: self,
