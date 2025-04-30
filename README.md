@@ -7,7 +7,7 @@ Video demo:
 ![Video demo](https://github.com/user-attachments/assets/e3423656-a53d-4cf1-a012-34548629eb8c)
 
 <img width="1440" alt="Frame 200" src="https://github.com/user-attachments/assets/35e9ea29-3852-43c7-85fe-1ea322db8645" />
-<img width="1440" alt="Frame 197 (1)" src="https://github.com/user-attachments/assets/72be2301-b9a9-4349-8c1c-6c0179a94bd4" />
+<img width="1440" alt="Frame 195" src="https://github.com/user-attachments/assets/be093630-3bc5-42c1-9ece-403a8f668a58" />
 
 Unfortunately i was not able to submit this to AppStore, so I'm giving thisout for free.
 
